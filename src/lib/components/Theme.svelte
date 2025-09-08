@@ -1,6 +1,6 @@
 <script lang="ts">
   let dark = $state(false);
-  let theme = $derived(dark ? "dark" : "emerald");
+  let theme = $derived(dark ? "abyss" : "light");
 
   function isDark() {
     dark = !dark;
