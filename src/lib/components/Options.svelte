@@ -13,7 +13,7 @@
       width="16"
       height="16"
       fill="currentColor"
-      class="bi bi-gear-fill"
+      class="bi bi-gear-fill text-black"
       viewBox="0 0 16 16"
     >
       <path
@@ -23,7 +23,7 @@
   </div>
 
 <div class="fab-close">
-    <span class="btn btn-circle btn-lg btn-error">x</span>
+    <span class="btn btn-circle btn-lg btn-error font-bold">x</span>
   </div>
   <Theme />
   <button class="btn btn-lg btn-circle">B</button>
