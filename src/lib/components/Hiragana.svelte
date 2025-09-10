@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Points } from "$lib";
+  import { Button, Points, Time } from "$lib";
 
   let hiragana = $state([
     { jp: "あ", en: "A" },
@@ -133,7 +133,6 @@
     { jp: "ぴゅ", en: "PYU" },
     { jp: "ぴょ", en: "PYO" },
   ]);
-
   let jp = $state("");
   let en = $state("");
   let chars = $state([]);
@@ -157,14 +156,20 @@
     }
   }
 
-  function selectInput() {
-    const firstInput = document.getElementById("input-0")
-    firstInput?.focus()
+  function focusFirstInput() {
+    const firstInput = document.getElementById("input-0");
+    firstInput?.focus();
+  }
+
+  function nextInput(i: number) {
+    const input = document.getElementById(`input-${i}`);
+    input?.focus();
+    check();
   }
 
   $effect(() => {
     generate();
-    selectInput()
+    focusFirstInput();
   });
 
   $inspect(chars);
@@ -182,13 +187,12 @@
             type="text"
             maxlength="1"
             bind:value={chars[i]}
-            oninput={check}
+            oninput={() => nextInput(i + 1)}
             class="border-b-4 min-w-10 max-w-10 text-center outline-0 text-5xl"
           />
         {/key}
       {/each}
     </div>
-
     <Button onclick={generate}>Skip</Button>
   </div>
 </section>
