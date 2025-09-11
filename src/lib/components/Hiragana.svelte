@@ -1,5 +1,9 @@
 <script lang="ts">
-  import { Button, Points, Time } from "$lib";
+  import { Button } from "$lib";
+
+  $effect(() => {
+    generate();
+  });
 
   let hiragana = $state([
     { jp: "あ", en: "A" },
@@ -137,6 +141,7 @@
   let en = $state("");
   let chars = $state([]);
   let randomIndex = $state(0);
+  let KeyboardKey = $state("");
 
   function generate() {
     let random = Math.floor(Math.random() * hiragana.length);
@@ -144,6 +149,7 @@
     en = hiragana[randomIndex].en;
     randomIndex = random;
     chars.length = 0;
+    document.getElementById("input-0")?.focus();
   }
 
   function check() {
@@ -156,23 +162,15 @@
     }
   }
 
-  function focusFirstInput() {
-    const firstInput = document.getElementById("input-0");
-    firstInput?.focus();
+  function checkInput(i: number) {
+    if (KeyboardKey === "Backspace") {
+      if (i < 0) i = 0;
+      document.getElementById(`input-${i - 1}`)?.focus();
+    } else {
+      document.getElementById(`input-${i + 1}`)?.focus();
+      check();
+    }
   }
-
-  function nextInput(i: number) {
-    const input = document.getElementById(`input-${i}`);
-    input?.focus();
-    check();
-  }
-
-  $effect(() => {
-    generate();
-    focusFirstInput();
-  });
-
-  $inspect(chars);
 </script>
 
 <section class="flex justify-center items-center mt-20">
@@ -187,7 +185,8 @@
             type="text"
             maxlength="1"
             bind:value={chars[i]}
-            oninput={() => nextInput(i + 1)}
+            onkeydown={(e) => (KeyboardKey = e.key)}
+            oninput={() => checkInput(i)}
             class="border-b-4 min-w-10 max-w-10 text-center outline-0 text-5xl"
           />
         {/key}
