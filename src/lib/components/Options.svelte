@@ -25,7 +25,6 @@
   <div class="fab-close">
     <span class="btn btn-circle btn-lg btn-error font-bold">x</span>
   </div>
-  <Theme />
   <Button href="/">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -43,6 +42,7 @@
       />
     </svg>
   </Button>
+  <Theme />
   <Button href="/hiragana">
     <svg
       xmlns="http://www.w3.org/2000/svg"
