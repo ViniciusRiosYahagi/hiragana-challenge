@@ -1,16 +1,25 @@
 <script lang="ts">
-  let time = $state(60);
+  import { start, time } from "$lib/stores/vars.svelte";
+  import { onDestroy } from "svelte";
+
+  function startTime() {
+    const seconds = setInterval(() => {
+      time.value--;
+      if (time.value === 0) {
+        time.value = 60;
+        start.value = false;
+        clearInterval(seconds);
+      }
+    }, 1000);
+  }
 
   $effect(() => {
-    const seconds = setInterval(() => {
-      if (time === 0) return;
-      time--;
-    }, 1000);
+    if (start.value) startTime();
+  });
 
-    return () => {
-      clearInterval(seconds);
-    };
+  onDestroy(() => {
+    start.value = false;
   });
 </script>
 
-<p class="text-success text-6xl">{time}</p>
+<p class="text-success text-6xl">{time.value}</p>

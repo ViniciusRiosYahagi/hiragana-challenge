@@ -1,7 +1,6 @@
 <script lang="ts">
   const hiraganaData = [
     {
-      category: "Vogais",
       characters: [
         { jp: "あ", en: "A" },
         { jp: "い", en: "I" },
@@ -12,7 +11,6 @@
     },
 
     {
-      category: "Linha K",
       characters: [
         { jp: "か", en: "KA" },
         { jp: "き", en: "KI" },
@@ -23,7 +21,6 @@
     },
 
     {
-      category: "Linha S",
       characters: [
         { jp: "さ", en: "SA" },
         { jp: "し", en: "SHI" },
@@ -34,7 +31,6 @@
     },
 
     {
-      category: "Linha T",
       characters: [
         { jp: "た", en: "TA" },
         { jp: "ち", en: "CHI" },
@@ -45,7 +41,6 @@
     },
 
     {
-      category: "Linha N",
       characters: [
         { jp: "な", en: "NA" },
         { jp: "に", en: "NI" },
@@ -56,7 +51,6 @@
     },
 
     {
-      category: "Linha H",
       characters: [
         { jp: "は", en: "HA" },
         { jp: "ひ", en: "HI" },
@@ -67,7 +61,6 @@
     },
 
     {
-      category: "Linha M",
       characters: [
         { jp: "ま", en: "MA" },
         { jp: "み", en: "MI" },
@@ -78,7 +71,6 @@
     },
 
     {
-      category: "Linha Y",
       characters: [
         { jp: "や", en: "YA" },
         { jp: "ゆ", en: "YU" },
@@ -87,7 +79,6 @@
     },
 
     {
-      category: "Linha R",
       characters: [
         { jp: "ら", en: "RA" },
         { jp: "り", en: "RI" },
@@ -98,7 +89,6 @@
     },
 
     {
-      category: "Linha W",
       characters: [
         { jp: "わ", en: "WA" },
         { jp: "を", en: "WO" },
@@ -106,13 +96,12 @@
     },
 
     {
-      category: "Especiais",
       characters: [{ jp: "ん", en: "N" }],
     },
   ];
 </script>
 
-<div class="flex justify-center gap-3 mx-3">
+<div class="flex justify-center gap-3 mt-40">
   {#each hiraganaData.reverse() as { characters }}
     <div>
       {#each characters as { jp, en }}

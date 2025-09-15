@@ -6,4 +6,5 @@ export { default as Hiragana } from "./components/Hiragana.svelte";
 export { default as Time } from "./components/Time.svelte"
 export { default as Button } from "./components/ui/Button.svelte"
 export { default as Points } from "./components/Points.svelte"
+export { default as Input } from "./components/ui/Input.svelte"
 
