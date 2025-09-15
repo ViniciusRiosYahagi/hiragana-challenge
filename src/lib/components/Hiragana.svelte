@@ -1,11 +1,7 @@
 <script lang="ts">
   import { page } from "$app/state";
   import { Button, Input, Points, Time } from "$lib";
-  import { start, time } from "$lib/stores/vars.svelte";
-
-  $effect(() => {
-    generate();
-  });
+  import { points, start } from "$lib/stores/vars.svelte";
 
   let hiragana = $state([
     { jp: "あ", en: "A" },
@@ -61,6 +57,10 @@
   let randomIndex = $state(0);
   let KeyboardKey = $state("");
 
+  $effect(() => {
+    generate();
+  });
+
   function generate() {
     let random = Math.floor(Math.random() * hiragana.length);
     jp = hiragana[randomIndex].jp;
@@ -75,6 +75,7 @@
       const time = setTimeout(() => {
         chars.length = 0;
         generate();
+        points.value++;
       }, 300);
       return () => clearInterval(time);
     }
@@ -89,7 +90,12 @@
       check();
     }
   }
-  $inspect(start.value);
+
+  function play() {
+    start.value = !start.value;
+    points.value = 0;
+    generate();
+  }
 </script>
 
 <section class="h-screen flex justify-center items-center">
@@ -123,10 +129,7 @@
       {/each}
     </div>
     {#if page.url.pathname === "/game"}
-      <Button
-        onclick={() => (start.value = !start.value)}
-        disabled={start.value}>Play</Button
-      >
+      <Button onclick={() => play()} disabled={start.value}>Play</Button>
     {:else}
       <Button onclick={generate}>Skip</Button>
     {/if}

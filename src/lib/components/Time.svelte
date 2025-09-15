@@ -1,12 +1,14 @@
 <script lang="ts">
-  import { start, time } from "$lib/stores/vars.svelte";
+  import { start } from "$lib/stores/vars.svelte";
   import { onDestroy } from "svelte";
+
+  let time = $state(60);
 
   function startTime() {
     const seconds = setInterval(() => {
-      time.value--;
-      if (time.value === 0) {
-        time.value = 60;
+      time--;
+      if (time === 0) {
+        time = 60;
         start.value = false;
         clearInterval(seconds);
       }
@@ -22,4 +24,4 @@
   });
 </script>
 
-<p class="text-success text-6xl">{time.value}</p>
+<p class="text-success text-6xl">{time}</p>

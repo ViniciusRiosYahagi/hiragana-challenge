@@ -13,7 +13,7 @@
 <input
   class="border-b-4 min-w-10 max-w-10 text-center outline-0 text-5xl"
   type="text"
-  minlength="1"
+  maxlength="1"
   {id}
   {disabled}
   {oninput}
