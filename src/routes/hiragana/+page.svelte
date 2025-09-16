@@ -101,7 +101,7 @@
   ];
 </script>
 
-<div class="flex justify-center gap-3 mt-40">
+<div class="flex flex-col justify-center gap-3 mt-40 lg:flex-row">
   {#each hiraganaData.reverse() as { characters }}
     <div>
       {#each characters as { jp, en }}

@@ -96,8 +96,6 @@
     points.value = 0;
     generate();
   }
-
-  $inspect(KeyboardKey)
 </script>
 
 <section class="h-screen flex justify-center items-center">
