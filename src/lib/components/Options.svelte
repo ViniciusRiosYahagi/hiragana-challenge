@@ -43,7 +43,7 @@
         width="16"
         height="16"
         fill="currentColor"
-        class="bi bi-house-door size-10"
+        class="bi bi-house-door"
         viewBox="0 0 16 16"
       >
         <path
