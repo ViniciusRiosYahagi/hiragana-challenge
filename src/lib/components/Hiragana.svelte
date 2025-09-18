@@ -75,7 +75,10 @@
       const time = setTimeout(() => {
         chars.length = 0;
         generate();
-        points.value++;
+
+        if (page.url.pathname !== "/") {
+          points.value++;
+        }
       }, 300);
       return () => clearInterval(time);
     }
