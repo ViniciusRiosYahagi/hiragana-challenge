@@ -1,56 +1,10 @@
 <script lang="ts">
   import { page } from "$app/state";
   import { Button, Input, Points, Time } from "$lib";
+  import { hiragna } from "$lib/data/hiragana";
   import { points, start } from "$lib/stores/vars.svelte";
 
-  let hiragana = $state([
-    { jp: "あ", en: "A" },
-    { jp: "い", en: "I" },
-    { jp: "う", en: "U" },
-    { jp: "え", en: "E" },
-    { jp: "お", en: "O" },
-    { jp: "か", en: "KA" },
-    { jp: "き", en: "KI" },
-    { jp: "く", en: "KU" },
-    { jp: "け", en: "KE" },
-    { jp: "こ", en: "KO" },
-    { jp: "さ", en: "SA" },
-    { jp: "し", en: "SHI" },
-    { jp: "す", en: "SU" },
-    { jp: "せ", en: "SE" },
-    { jp: "そ", en: "SO" },
-    { jp: "た", en: "TA" },
-    { jp: "ち", en: "CHI" },
-    { jp: "つ", en: "TSU" },
-    { jp: "て", en: "TE" },
-    { jp: "と", en: "TO" },
-    { jp: "な", en: "NA" },
-    { jp: "に", en: "NI" },
-    { jp: "ぬ", en: "NU" },
-    { jp: "ね", en: "NE" },
-    { jp: "の", en: "NO" },
-    { jp: "は", en: "HA" },
-    { jp: "ひ", en: "HI" },
-    { jp: "ふ", en: "FU" },
-    { jp: "へ", en: "HE" },
-    { jp: "ほ", en: "HO" },
-    { jp: "ま", en: "MA" },
-    { jp: "み", en: "MI" },
-    { jp: "む", en: "MU" },
-    { jp: "め", en: "ME" },
-    { jp: "も", en: "MO" },
-    { jp: "や", en: "YA" },
-    { jp: "ゆ", en: "YU" },
-    { jp: "よ", en: "YO" },
-    { jp: "ら", en: "RA" },
-    { jp: "り", en: "RI" },
-    { jp: "る", en: "RU" },
-    { jp: "れ", en: "RE" },
-    { jp: "ろ", en: "RO" },
-    { jp: "わ", en: "WA" },
-    { jp: "を", en: "WO" },
-    { jp: "ん", en: "N" },
-  ]);
+  let hiragana = $state(hiragna)
   let jp = $state("");
   let en = $state("");
   let chars = $state([]);
@@ -61,11 +15,35 @@
     generate();
   });
 
+  // function randomGenerator(array: object[]) {
+  //   for (let i = array.length -1; i > 0; i--) {
+  //     let randomID = Math.floor(Math.random() * (i + 1)) as number
+  //     [array[i], array[randomID]] = [array[randomID], array[i]]
+  //   }
+
+  //   return array
+  // }
+
+  // randomGenerator(hiragana)
+
+  // Function that set an new index
   function generate() {
-    let random = Math.floor(Math.random() * hiragana.length);
+    let newNumber;
+    let random;
+
+    // While the generated random number is equal to the last random number, generate a new number.
+    do {
+      newNumber = Math.floor(Math.random() * hiragana.length);
+    } while (random === newNumber);
+
+    random = newNumber;
+    randomIndex = random;
+
+    console.log(newNumber, random);
+
     jp = hiragana[randomIndex].jp;
     en = hiragana[randomIndex].en;
-    randomIndex = random;
+
     chars.length = 0;
     document.getElementById("input-0")?.focus();
   }
@@ -107,6 +85,7 @@
       <Time />
       <Points />
     {/if}
+    <!-- Hiragana Character display -->
     <p class="text-9xl text-success border-4 p-20">{jp}</p>
 
     <div class="flex gap-3">

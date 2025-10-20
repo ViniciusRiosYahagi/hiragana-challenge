@@ -1,0 +1,6 @@
+export { default as Settings } from "./settings.svelte"
+export { default as Close } from "./Close.svelte"
+export { default as Home } from "./Home.svelte"
+export { default as Abc } from "./Abc.svelte"
+export { default as Game } from "./Game.svelte"
+export { default as Github } from "./Github.svelte"
