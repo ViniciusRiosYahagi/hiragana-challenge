@@ -39,8 +39,6 @@
     random = newNumber;
     randomIndex = random;
 
-    console.log(newNumber, random);
-
     jp = hiragana[randomIndex].jp;
     en = hiragana[randomIndex].en;
 
